@@ -7,14 +7,14 @@ RUN yum -y update && \
  yum -y install wget && \
  yum -y install tar
 
-# Prepare environment 
+# Prepare environment
 ENV JAVA_HOME /opt/java
-ENV CATALINA_HOME /opt/tomcat 
+ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/bin:$CATALINA_HOME/scripts
 
 # Install Oracle Java8
 ENV JAVA_VERSION 8u131
-ENV JAVA_BUILD 8u121-b11
+ENV JAVA_BUILD 8u131-b11
 ENV JAVA_DL_HASH d54c1d3a095b4ff2b6607d096fa80163
 
 RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
@@ -28,7 +28,7 @@ RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=acc
 ENV TOMCAT_MAJOR 8
 ENV TOMCAT_VERSION 8.5.15
 
-RUN wget http://ftp.riken.jp/net/apache/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
  tar -xvf apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
  rm apache-tomcat*.tar.gz && \
  mv apache-tomcat* ${CATALINA_HOME}
